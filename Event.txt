@@ -1,0 +1,70 @@
+DROP SCHEMA
+
+IF EXISTS Event;
+	
+CREATE SCHEMA Event COLLATE = utf8_general_ci;
+
+
+USE Event;
+
+create table EVENTS(
+  cod_event INT,
+  cod_typ_event INT,
+  cod_zon INT,
+  date_event DATE,
+  dir_event VARCHAR(50),
+  des_event VARCHAR(50),
+  PRIMARY KEY(cod_event)
+);
+
+create table EVENT_TYPES(
+  cod_typ_event INT,
+  des_event VARCHAR(50),
+  PRIMARY KEY(cod_typ_event)
+);
+
+create table ZONES(
+  cod_zon INT,
+  num_seat INT,
+  row_seat INT,
+  ind_seat INT,
+  PRIMARY KEY(cod_zon)
+);
+
+create table RESERVATIONS(
+  cod_reser INT,
+  cod_event INT,
+  cod_user INT,
+  date_reser DATE,
+  PRIMARY KEY(cod_reser)
+);
+
+create table USERS(
+  cod_user INT,
+  password VARCHAR(50),
+  email VARCHAR(50),
+  PRIMARY KEY(cod_user)
+);
+
+create table PROFILES(
+  cod_profile INT,
+  cod_user INT,
+  last_name VARCHAR(50),
+  tel_num INT,
+  PRIMARY KEY(cod_profile)
+);
+
+
+alter table EVENTS
+add Foreign Keys REFERENCES EVENT_TYPES(cod_typ_event) ;
+add Foreign Keys REFERENCES ZONES(cod_zon) ;
+
+alter table PROFILES
+add Foreign Keys REFERENCES USERS(cod_user);
+
+alter table ZONES
+add Foreign Keys(cod_zon);
+
+alter table RESERVATIONS
+add Foreign Keys REFERENCES USERS(cod_user);
+add Foreign Keys REFERENCES EVENTS(cod_event) ;
