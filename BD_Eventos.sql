@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `seats` (
   `cod_seat` varchar(5) NOT NULL,
   `num_seat` varchar(5) DEFAULT NULL,
   `row_seat` varchar(10) DEFAULT NULL,
-  `ind_seat` varchar(10) DEFAULT NULL,
+  `sta_seat` varchar(10) DEFAULT NULL,
   `cod_event` varchar(5) NOT NULL,
   PRIMARY KEY (`cod_seat`,`cod_event`),
   KEY `R_4` (`cod_event`)
